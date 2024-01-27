@@ -155,6 +155,9 @@ class BaseDataset(Dataset):
                     im = cv2.imread(f)  # BGR
             else:  # read image
                 im = cv2.imread(f)  # BGR
+                if im is not None:
+                    np.save(fn, im) # save as npy
+
             if im is None:
                 raise FileNotFoundError(f"Image Not Found {f}")
 

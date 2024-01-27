@@ -285,6 +285,8 @@ class ClassificationDataset(torchvision.datasets.ImageFolder):
             im = np.load(fn)
         else:  # read image
             im = cv2.imread(f)  # BGR
+            if im is not None:
+                np.save(fn, im) # save as npy
         # Convert NumPy array to PIL image
         im = Image.fromarray(cv2.cvtColor(im, cv2.COLOR_BGR2RGB))
         sample = self.torch_transforms(im)
